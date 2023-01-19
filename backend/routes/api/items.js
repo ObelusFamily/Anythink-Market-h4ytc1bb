@@ -1,4 +1,4 @@
-require("dotenv").config();
+require("dotenv");
 var router = require("express").Router();
 var mongoose = require("mongoose");
 var Item = mongoose.model("Item");
