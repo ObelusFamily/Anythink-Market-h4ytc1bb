@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "find-config": "^1.0.0",
+    "openai": "^3.1.0"
+  }
+}
