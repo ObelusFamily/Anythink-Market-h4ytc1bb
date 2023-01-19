@@ -154,24 +154,24 @@ router.post("/", auth.required, function (req, res, next) {
       }
 
       var item = new Item(req.body.item);
-      if (item.image.length === 0) {
-        try {
-          const response = await openai.createImage({
-            prompt: item.title,
-            n: 1,
-            size: "256x256",
-          });
-          image_url = response.data.data[0].url;
-        } catch (error) {
-          if (error.response) {
-            console.log(error.response.status);
-            console.log(error.response.data);
-          } else {
-            console.log(error.message);
-          }
-        }
-      }
-      item.image = image_url;
+      // if (item.image.length === 0) {
+      //   try {
+      //     const response = await openai.createImage({
+      //       prompt: item.title,
+      //       n: 1,
+      //       size: "256x256",
+      //     });
+      //     image_url = response.data.data[0].url;
+      //   } catch (error) {
+      //     if (error.response) {
+      //       console.log(error.response.status);
+      //       console.log(error.response.data);
+      //     } else {
+      //       console.log(error.message);
+      //     }
+      //   }
+      // }
+      item.image = "oaidalleapiprodscus.blob.core.windows.net/asd.jpg";
       item.seller = user;
 
       return item.save().then(function () {
@@ -355,4 +355,5 @@ router.delete(
 );
 
 module.exports = router;
+
 
