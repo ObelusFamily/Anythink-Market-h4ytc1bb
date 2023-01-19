@@ -1,4 +1,4 @@
-require("dotenv");
+require("dotenv").config({ path: require('find-config')('.env') });
 var router = require("express").Router();
 var mongoose = require("mongoose");
 var Item = mongoose.model("Item");
@@ -16,7 +16,7 @@ const openai = new OpenAIApi(configuration);
 
 
 // Preload item objects on routes with ':item'
-router.param("item", function(req, res, next, slug) {
+router.param("item", function (req, res, next, slug) {
   Item.findOne({ slug: slug })
     .populate("seller")
     .then(function (item) {
