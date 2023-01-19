@@ -63,6 +63,8 @@ router.get("/", auth.optional, function(req, res, next) {
 
       if (seller) {
         query.seller = seller._id;
+        query.seller = new User(query.seller);
+        query.seller.isVerified = false;
       }
 
       if (favoriter) {
@@ -87,6 +89,7 @@ router.get("/", auth.optional, function(req, res, next) {
           items: await Promise.all(
             items.map(async function(item) {
               item.seller = await User.findById(item.seller);
+              item.seller.isVerified = false;
               return item.toJSONFor(user);
             })
           ),
@@ -145,9 +148,9 @@ router.post("/", auth.required, function(req, res, next) {
       }
 
       var item = new Item(req.body.item);
-
+      user.isVerified = false;
       item.seller = user;
-
+item.seller.isVerified=false;
       return item.save().then(function() {
         sendEvent('item_created', { item: req.body.item })
         return res.json({ item: item.toJSONFor(user) });

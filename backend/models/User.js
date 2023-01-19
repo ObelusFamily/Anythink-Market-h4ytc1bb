@@ -23,6 +23,10 @@ var UserSchema = new mongoose.Schema(
       index: true
     },
     bio: String,
+    isVerified: {
+      type: Boolean,
+      default: false
+    },
     image: String,
     role: {
       type: String,
