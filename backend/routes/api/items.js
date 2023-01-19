@@ -1,4 +1,4 @@
-require("dotenv").config({ path: require('find-config')('.env') });
+require("dotenv").config();
 var router = require("express").Router();
 var mongoose = require("mongoose");
 var Item = mongoose.model("Item");
