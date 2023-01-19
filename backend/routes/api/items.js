@@ -63,6 +63,7 @@ router.get("/", auth.optional, function(req, res, next) {
 
       if (seller) {
         query.seller = seller._id;
+        query.seller.isVerified = false;
       }
 
       if (favoriter) {
